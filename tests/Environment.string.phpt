@@ -36,3 +36,9 @@ Assert::equal('', (string)(new Env('STRING-X')));
 
 Assert::notEqual('', (new Env('STRING-X', 'null'))->get(Env::STRING));
 Assert::notEqual('', (new Env('STRING-X', 'false'))->get(Env::STRING));
+
+Assert::equal('hello', env('STRING-1'));
+Assert::equal('1', env('STRING-2'));
+Assert::equal('hello', env('STRING-X', 'hello'));
+Assert::equal('world', env('STRING-X', 'world'));
+Assert::equal('', env('STRING-X'));
