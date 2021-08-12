@@ -32,3 +32,8 @@ Assert::equal(0, (new Env('INT-X'))->get(Env::INT));
 
 Assert::notEqual(1, (new Env('INT-X', '0'))->get(Env::INT));
 Assert::notEqual(1, (new Env('INT-X', ''))->get(Env::INT));
+
+Assert::equal(1, env('INT-1', '1', Env::INT));
+Assert::equal(1, env('INT-2', '1,1', Env::INT));
+Assert::equal(1, env('INT-3', '1.1', Env::INT));
+Assert::equal(1, env('INT-X', '1.1', Env::INT));

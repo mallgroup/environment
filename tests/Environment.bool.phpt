@@ -34,3 +34,11 @@ Assert::equal(true, (new Env('BOOL-X', 'true'))->get(Env::BOOL));
 Assert::equal(false, (new Env('BOOL-X', 'false'))->get(Env::BOOL));
 Assert::equal(false, (new Env('BOOL-X', '0'))->get(Env::BOOL));
 Assert::equal(false, (new Env('BOOL-X', ''))->get(Env::BOOL));
+
+Assert::equal(true, env('BOOL-1', 'false', Env::BOOL));
+Assert::equal(true, env('BOOL-1', '0', Env::BOOL));
+Assert::equal(true, env('BOOL-X', '1', Env::BOOL));
+Assert::equal(true, env('BOOL-X', 'true', Env::BOOL));
+Assert::equal(false, env('BOOL-X', 'false', Env::BOOL));
+Assert::equal(false, env('BOOL-X', '0', Env::BOOL));
+Assert::equal(false, env('BOOL-X', '', Env::BOOL));

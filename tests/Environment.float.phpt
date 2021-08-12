@@ -32,3 +32,9 @@ Assert::equal(1.1, (new Env('FLOAT-X', '1.1'))->get(Env::FLOAT));
 
 Assert::notEqual(1.1, (new Env('FLOAT-1'))->get(Env::FLOAT));
 Assert::notEqual(1.1, (new Env('FLOAT-X', '1.0'))->get(Env::FLOAT));
+
+Assert::equal(1.0, env('FLOAT-1', '1', Env::FLOAT));
+Assert::equal(1.0, env('FLOAT-2', '1,1', Env::FLOAT));
+Assert::equal(1.1, env('FLOAT-3', '1.1', Env::FLOAT));
+Assert::equal(0.0, env('FLOAT-X', '0', Env::FLOAT));
+Assert::equal(1.1, env('FLOAT-X', '1.1', Env::FLOAT));
