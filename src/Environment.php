@@ -8,7 +8,9 @@ class Environment
 {
     public const STRING = 'string';
     public const BOOL = 'bool';
+    public const BOOLEAN = 'boolean';
     public const INT = 'int';
+    public const INTEGER = 'integer';
     public const FLOAT = 'float';
 
     public function __construct(
@@ -25,8 +27,8 @@ class Environment
     private static function castIt(?string $value, string $cast): null|string|bool|int|float
     {
         return ($value !== null) ? match ($cast) {
-            self::BOOL => !($value === 'false' || !$value),
-            self::INT => (int)$value,
+            self::BOOL, self::BOOLEAN => !($value === 'false' || !$value),
+            self::INT, self::INTEGER => (int)$value,
             self::FLOAT => (float)$value,
             default => $value,
         } : null;
@@ -60,6 +62,6 @@ class Environment
 
     public function get(string $cast = self::STRING): string|bool|int|float
     {
-        return self::castIt(self::env($this->name) ?? $this->default, $cast) ?? '';
+        return self::castIt(self::env($this->name) ?? $this->default, strtolower($cast)) ?? '';
     }
 }
