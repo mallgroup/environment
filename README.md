@@ -1,3 +1,5 @@
+![](https://heatbadger.now.sh/github/readme/mallgroup/environment/)
+
 # Mallgroup/Environment
 Easy class for getting ENV values with casting and default value fallback. Great for frameworks like Nette.
 
@@ -16,3 +18,10 @@ The best way to install Mallgroup/Environment is using [Composer](http://getcomp
 ```sh
 $ composer require mallgroup/environment
 ```
+
+## Development
+
+This package is currently maintaining by these authors.
+
+<a href="https://github.com/bckp"><img width="80" height="80" src="https://avatars.githubusercontent.com/u/179652?v=4&s=80"></a>
+<a href="https://github.com/mallgroup"><img width="80" height="80" src="https://avatars.githubusercontent.com/u/23184995?v=4&s=80"></a>
