@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  environment:
+    container_name: mg-environment
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+    stdin_open: true
+    tty: true

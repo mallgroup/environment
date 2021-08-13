@@ -13,10 +13,17 @@ class Environment
     public const INTEGER = 'integer';
     public const FLOAT = 'float';
 
+    protected static string $prefix = '';
+
     public function __construct(
         private string $name,
         private string $default = ''
     ) {
+    }
+
+    public static function setPrefix(string $prefix = ''): void
+    {
+        self::$prefix = $prefix ? strtoupper(rtrim($prefix, '_')) . '_' : '';
     }
 
     public static function bool(string $name, bool $default = false): bool
@@ -36,7 +43,7 @@ class Environment
 
     private static function env(string $name): ?string
     {
-        $env = getenv($name);
+        $env = getenv(self::$prefix . $name);
         return (false === $env) ? null : $env;
     }
 
