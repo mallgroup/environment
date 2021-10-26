@@ -1,7 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
-function env(string $value): string {
-    return $value;
+function env(string $value): string
+{
+	return $value;
 }
 
 use Tester\Assert;

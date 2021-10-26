@@ -1,8 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 use Mallgroup\Environment;
-use function Mallgroup\setenv;
 use Tester\Assert;
+
+use function Mallgroup\setenv;
 
 require 'bootstrap.php';
 require 'getenv.php';
