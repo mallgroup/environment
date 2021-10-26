@@ -1,8 +1,9 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Mallgroup;
+
+use function explode;
 
 class Environment
 {
@@ -14,6 +15,7 @@ class Environment
     public const FLOAT = 'float';
 
     protected static string $prefix = '';
+	protected const DELIMITER = '|';
 
     public function __construct(
         private string $name,
@@ -62,13 +64,43 @@ class Environment
         return self::env($name) ?? $default;
     }
 
+	/**
+	 * @param string $name
+	 * @param non-empty-string $separator
+	 * @param string $cast
+	 * @return string[]|int[]|float[]|bool[]
+	 */
+	public static function array(string $name, string $separator = self::DELIMITER , string $cast = self::STRING): array
+	{
+		return
+			array_filter(
+				array_map(
+				static fn($item) => self::castIt($item, $cast),
+				array_filter(
+					explode($separator, self::string($name)),
+					static fn($item) => $item !== ''
+				)
+			),
+			static fn($item) => $item !== null
+		);
+	}
+
     public function __toString(): string
     {
         return self::env($this->name) ?? $this->default;
     }
 
-    public function get(string $cast = self::STRING): string|bool|int|float
+	public function get(string $cast = self::STRING): string|bool|int|float
     {
         return self::castIt(self::env($this->name) ?? $this->default, strtolower($cast)) ?? '';
     }
+
+	/**
+	 * @param string $cast
+	 * @return bool[]|float[]|int[]|string[]
+	 */
+	public function toArray(string $cast = self::STRING): array
+	{
+		return self::array($this->name, $this->default ?: self::DELIMITER, $cast);
+	}
 }
